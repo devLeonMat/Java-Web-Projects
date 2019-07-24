@@ -23,7 +23,7 @@
                 <input type="File" name="file" id="" class="form-control" placeholder="" aria-describedby="helpId">
                 <br>
                 <input type="submit" value="Guardar" class="btn btn-warning">
-            </form>
+            </form>|
         </div>
     </div>
 
