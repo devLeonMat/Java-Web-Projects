@@ -4,21 +4,15 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>File Upload Demo</title>
+    <title>Ejemplo de Subida de Archivo</title>
 </head>
 
-<body>
-    <div>Apache FileUpload</div>
-    <form method="post" action="uploadFile" enctype="multipart/form-data">
-        Buscar Archivo: 
-        <input type="file" name="uploadFile"/>
-        <input type="submit" value="Upload"/>
-    </form>
-    <div>Servlet Multipart</div>
+<body>    
+    <div>FileUpload Apache </div>
     <form method="post" action="multiPartServlet" enctype="multipart/form-data">
         Buscar Archivo: 
         <input type="file" name="multiPartServle"/>
-        <input type="submit" value="Upload"/>
+        <input type="submit" value="Enviar"/>
     </form>
 </body>
 </html>
