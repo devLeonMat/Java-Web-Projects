@@ -1,17 +1,18 @@
 <%-- 
-    Document   : header
-    Created on : 31/07/2019, 05:03:54 PM
-    Author     : PSSPERU-TI
+    Document   : index
+    Created on : 27/07/2019, 11:29:06 AM
+    Author     : RLEON
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
+
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Restaurant</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/style.css">
     </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>

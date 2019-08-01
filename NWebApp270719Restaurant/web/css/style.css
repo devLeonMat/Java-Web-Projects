@@ -1,0 +1,9 @@
+.carrusel-position{
+    margin-top: -57px !important;
+}
+
+nav{
+    z-index: 2 !important;
+    background-color: rgba(0,0,0,0.6) !important;
+}
+
