@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.rleon.restaurante.controller;
 
 import java.io.IOException;
@@ -12,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Leon Matias R.
  */
-@WebServlet(name = "ReservaServlet", urlPatterns = {"/Reserva"})
-public class ReservaServlet extends HttpServlet {
+@WebServlet(name = "atencionServlet", urlPatterns = {"/atencion"})
+public class atencionServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,10 +37,10 @@ public class ReservaServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ReservaServlet</title>");            
+            out.println("<title>Servlet atencionServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ReservaServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet atencionServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -53,9 +58,8 @@ public class ReservaServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-               
-        request.getRequestDispatcher("/pages/reserva.jsp").forward(request, response);
         
+        request.getRequestDispatcher("/pages/atencion.jsp").forward(request, response);
     }
 
     /**
@@ -69,17 +73,7 @@ public class ReservaServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        String name = (String) request.getParameter("nombres");
-        String numero = (String) request.getParameter("number");
-        String numPersonas = (String) request.getParameter("numPersonas");
-        
-        request.getSession().setAttribute("nombre", name);
-        request.getSession().setAttribute("number", numero);
-        request.getSession().setAttribute("numPersonas", numPersonas);
-        
-        
-        request.getRequestDispatcher("/pages/reserva_confirm.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**

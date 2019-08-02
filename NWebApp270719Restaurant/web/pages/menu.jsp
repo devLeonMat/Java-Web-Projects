@@ -22,7 +22,7 @@
                         <a class="nav-link" href="Reserva">Reserva</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Atenci�n</a>
+                        <a class="nav-link" href="atencion">Atencion</a>
                     </li>
                 </ul>            
             </div>

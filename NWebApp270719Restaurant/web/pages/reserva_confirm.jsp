@@ -15,6 +15,7 @@
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title">Confirmacion de Rserva</h5>
+                        <p>Sr/Srta: <%=request.getSession().getAttribute("nombre") %></p>
                         <p class="card-text">¡Su mesa fue reservada. Gracias por su Preferencia!</p>
                         
                     </div>
