@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="nt" uri="/WEB-INF/tlds/nuevoTag.tld" %>
 <!doctype html>
 <html lang="en">
 
