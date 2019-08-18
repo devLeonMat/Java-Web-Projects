@@ -56,7 +56,7 @@
                             <div class="tab-pane fade" id="nav-profile" role="tabpanel"
                                  aria-labelledby="nav-profile-tab">
                                  <div class="card-columns mt-4">                                   
-                                        <% for (int i = 1; i < 10; i++) {%>
+                                        <% for (int i = 1; i < 14; i++) {%>
                                         <div class="card border-success">
                                             <img src="img/m1.jpg" class="card-img-top" alt="...">
                                             <div class="card-body">
