@@ -8,7 +8,6 @@ package com.restaurante.modelo.sql;
 import com.restaurante.modelo.Plato;
 import com.restaurante.modelo.dao.IDaoPlato;
 import com.restaurante.modelo.dao.impl.DaoPlato;
-import java.sql.Connection;
 
 /**
  *
