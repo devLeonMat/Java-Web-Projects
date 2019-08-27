@@ -12,7 +12,7 @@ public class Conexion {
 
     private static final String url = "jdbc:mysql://localhost/cibertec";
     private static final String user = "root";
-    private static final String pass = "mysql";
+    private static final String pass = "";
     
     public static synchronized Connection getConexion(){
       Connection con = null;

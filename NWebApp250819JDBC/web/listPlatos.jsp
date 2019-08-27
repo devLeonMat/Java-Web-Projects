@@ -9,21 +9,22 @@
         </tr>
     </thead>
     <tbody>
-        <% for (Plato p : listaPlatos) {%>
+        <% for (Plato pl : listaPlatos) {%>
         <tr>
-            <th scope="row"><%=p.getIdPlato()%></th>
-            <td><%=p.getNombre()%></td>
-            <td><%=p.getPrecio()%></td>
+            <th scope="row"><%=pl.getIdPlato()%></th>
+            <td><%=pl.getNombre()%></td>
+            <td>S/. <%=pl.getPrecio()%></td>
             <td>
-                <%if (p.getEstado() == 1) {%>
+                <%if (pl.getEstado() == 1) {%>
                 <span class="badge badge-pill badge-success">Disponible</span>
                 <%} else {%>
                 <span class="badge badge-pill badge-danger">Agotado</span>
                 <%}%>
             </td>
             <td>
-                <button  class="btn btn-outline-primary"><a>Editar</a></button>
-                <button  class="btn btn-outline-danger"><a>Eliminar</a></button>
+
+                <a class="btn btn-outline-primary" href="PlatoAdmin?accion=OBTENER&idPlato=<%=pl.getIdPlato()%>"><i class="fas fa-pen"></i></a>
+                <a class="btn btn-outline-danger" href="#" ><i class="fas fa-trash"></i></a>
             </td>
         </tr>                     
 

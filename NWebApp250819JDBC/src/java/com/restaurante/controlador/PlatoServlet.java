@@ -35,22 +35,42 @@ public class PlatoServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String accion = request.getParameter("accion");
+        Plato p = new Plato();
+        String resultado;
         List<Plato> listPlatos = new ArrayList<>();
         if (accion == null) {
+            listPlatos = daoPlato.listarPlatos();
             accion = new String();
         }
-        
-        if(accion.equalsIgnoreCase("nuevo")){
+
+        if (accion.equalsIgnoreCase("nuevo")) {
             System.out.println("Abir formulario");
         }
-        if(accion.equalsIgnoreCase("listar")){
+        if (accion.equalsIgnoreCase("listar")) {
             listPlatos = daoPlato.listarPlatos();
         }
-        if(accion.equalsIgnoreCase("obtener")){
+        if (accion.equalsIgnoreCase("obtener")) {
             listPlatos = daoPlato.listarPlatos();
         }
-        
+        if (accion.equalsIgnoreCase("REGISTRAR")) {
+            System.out.println(" Registramos el plato ");
+            p.setNombre(request.getParameter("nombre"));
+            p.setPrecio(Double.valueOf(request.getParameter("precio")));
+            resultado = daoPlato.insPlato(p);
+
+            if (resultado == null) {
+                System.out.println(" se inserto ");
+                accion = "LISTAR";
+            }
+            listPlatos = daoPlato.listarPlatos();
+            accion = "LISTAR";
+        }
+        if (accion.equalsIgnoreCase("OBTENER")) {
+            p = daoPlato.getPlato(Integer.valueOf(request.getParameter("idPlato")));
+        }
+
         request.getSession().setAttribute("accion", accion);
+        request.getSession().setAttribute("plato", p);
         request.getSession().setAttribute("listPlatos", listPlatos);
         request.getRequestDispatcher("gestionaPlato.jsp").forward(request, response);
 

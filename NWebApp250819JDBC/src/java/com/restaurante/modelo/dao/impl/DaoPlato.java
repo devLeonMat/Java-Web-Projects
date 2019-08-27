@@ -28,7 +28,7 @@ public class DaoPlato implements IDaoPlato {
             cn = Conexion.getConexion();
             Statement st = cn.createStatement();
             rs = st.executeQuery(sql);
-            
+
             while (rs.next()) {
                 p = new Plato();
                 p.setIdPlato(rs.getInt(1));
@@ -74,7 +74,7 @@ public class DaoPlato implements IDaoPlato {
     public String updPlato(Plato p) {
         Connection con = null;
         PreparedStatement ps = null;
-       String query = "UPDATE platos SET nombre=?, precio=? WHERE `idPlato`=?;";
+        String query = "UPDATE platos SET nombre=?, precio=? WHERE `idPlato`=?;";
         try {
             ps = con.prepareStatement(query);
             ps.setString(1, p.getNombre());
@@ -82,9 +82,9 @@ public class DaoPlato implements IDaoPlato {
             ps.setInt(3, p.getIdPlato());
             ps.executeUpdate();
         } catch (Exception e) {
-            
-        }finally{
-            
+
+        } finally {
+
         }
         return null;
     }
@@ -96,7 +96,32 @@ public class DaoPlato implements IDaoPlato {
 
     @Override
     public Plato getPlato(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Plato p = null;
+        Connection cn = null;
+        ResultSet rs = null;
+        
+        String sql = "SELECT `idPlato`, nombre, precio, estado FROM platos where idPlato = ?";
+        try {
+            cn = Conexion.getConexion();
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                p = new Plato();
+                p.setIdPlato(rs.getInt(1));
+                p.setNombre(rs.getString(2));
+                p.setPrecio(rs.getDouble(3));
+                p.setEstado(rs.getInt(4));            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            Conexion.cerrarConexion(rs);
+            Conexion.cerrarConexion(cn);
+        }
+
+        return p;
     }
 
 }

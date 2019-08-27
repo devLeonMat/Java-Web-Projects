@@ -11,7 +11,7 @@
           <a class="nav-link" href="index.jsp">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="PlatoAdmin">Platos Admin</a>
+          <a class="nav-link" href="PlatoAdmin?accion=LISTAR">Platos Admin</a>
         </li>       
         
       </ul>
