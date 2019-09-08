@@ -13,6 +13,9 @@
         <li class="nav-item">
           <a class="nav-link" href="PlatoAdmin?accion=LISTAR">Platos Admin</a>
         </li>       
+        <li class="nav-item">
+          <a class="nav-link" href="gestionaGrafico.jsp">Grafica PYE</a>
+        </li>       
         
       </ul>
       <form class="form-inline my-2 my-lg-0">
