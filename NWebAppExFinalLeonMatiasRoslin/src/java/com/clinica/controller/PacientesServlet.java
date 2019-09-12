@@ -1,9 +1,18 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.clinica.controller;
 
-import com.clinica.modelo.Login;
-import com.clinica.modelo.dao.UsuarioDao;
-import com.clinica.modelo.dao.impl.UsuarioDaoImpl;
+import com.clinica.modelo.Pacientes;
+import com.clinica.modelo.dao.PacientesDao;
+import com.clinica.modelo.dao.impl.PacientesDaoImpl;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,10 +23,10 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Leon Matias R.
  */
-@WebServlet(name = "LoginServlet", urlPatterns = {"/Login"})
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "PacientesServlet", urlPatterns = {"/Pacientes"})
+public class PacientesServlet extends HttpServlet {
 
-    UsuarioDao userDao = new UsuarioDaoImpl();
+    PacientesDao pacientes = new PacientesDaoImpl();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,24 +40,17 @@ public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String usuario = request.getParameter("usuario");
-        String password = request.getParameter("password");
+        Integer func = Integer.parseInt(request.getParameter("FUNC"));
 
-        Login login = userDao.getUsuario(usuario, password);
-
-        String success = "";
-
-        if (login != null) {
-            if (login.getUsuarios().getUsuario().equals(usuario)) {
-
-                request.getSession().setAttribute("login", login);
-                request.getRequestDispatcher("inicio.jsp").forward(request, response);
-            }
-        } else {
-            success = "active";
-            request.getSession().setAttribute("success", success);
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-
+        switch (func) {
+            case 10:
+                obtainPacientes(request, response);
+                break;
+            case 20:
+                // code block
+                break;
+            default:
+            // code block
         }
 
     }
@@ -91,5 +93,22 @@ public class LoginServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private void obtainPacientes(HttpServletRequest request, HttpServletResponse response) {
+
+        List<Pacientes> listPac = new ArrayList<>();
+        listPac = pacientes.getPacientes();
+        try {
+            request.getSession().setAttribute("pacientes", listPac);
+            request.getSession().setAttribute("oper", "LIST");
+
+            request.getRequestDispatcher("pacientes.jsp").forward(request, response);
+        } catch (ServletException ex) {
+            Logger.getLogger(PacientesServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(PacientesServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 
 }

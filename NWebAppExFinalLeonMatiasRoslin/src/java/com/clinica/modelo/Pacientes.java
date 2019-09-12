@@ -5,6 +5,50 @@ package com.clinica.modelo;
  * @date 11/09/2019
  * @time 12:48:05 AM
  */
-public class Pacientes {
+public class Pacientes extends Personas {
+
+    private int idPaciente;
+    private String diagnostico;
+
+    public Pacientes(int idDocumento, String tipoDocumento, String descripcion, int idPersona, String nombres, String apellidos, String edad, String sexo, String numDoc) {
+        super(idDocumento, tipoDocumento, descripcion, idPersona, nombres, apellidos, edad, sexo, numDoc);
+    }
+    public Pacientes() {
+        super(0, null, null, 0, null, null, null, null, null);
+    }
+
+    public Pacientes(int idPaciente, String diagnostico, String nombres, String apellidos) {
+        super(nombres, apellidos);
+        this.idPaciente = idPaciente;
+        this.diagnostico = diagnostico;
+    }
+
+    public Pacientes(int idPaciente, String diagnostico, int idPersona, int idDocumento, String nombres, String apellidos, String edad, String sexo,String numDoc) {
+        super(idPersona, idDocumento, nombres, apellidos, edad, sexo, numDoc);
+        this.idPaciente = idPaciente;
+        this.diagnostico = diagnostico;
+    }
+
+    public Pacientes(int idPaciente, String diagnostico, int idDocumento, String tipoDocumento, String descripcion, int idPersona, String nombres, String apellidos, String edad, String sexo, String numDoc) {
+        super(idDocumento, tipoDocumento, descripcion, idPersona, nombres, apellidos, edad, sexo, numDoc);
+        this.idPaciente = idPaciente;
+        this.diagnostico = diagnostico;
+    }
+
+    public int getIdPaciente() {
+        return idPaciente;
+    }
+
+    public void setIdPaciente(int idPaciente) {
+        this.idPaciente = idPaciente;
+    }
+
+    public String getDiagnostico() {
+        return diagnostico;
+    }
+
+    public void setDiagnostico(String diagnostico) {
+        this.diagnostico = diagnostico;
+    }
 
 }

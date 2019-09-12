@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="inicio.jsp">Clinica Prinston </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <% if (perfil.equalsIgnoreCase("admin") || perfil.equalsIgnoreCase("doc")) {%>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-users"></i> Pacientes
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="Pacientes?FUNC=10"><i class="fas fa-list-ul"></i> Listar Pacientes</a>
+                        <a class="dropdown-item" href="#"><i class="fas fa-search"></i> Buscar Paciente</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#"><i class="fas fa-user-plus"></i> Agregar Paciente</a>
+                    </div>
+                </li>
+                <%}%>
+                <%if (perfil.equalsIgnoreCase("admin") || perfil.equalsIgnoreCase("user")) {%>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user-md"></i> Medicos
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#"><i class="fas fa-list-ul"></i> Listar Medicos</a>
+                        <a class="dropdown-item" href="#"><i class="fas fa-search"></i> Buscar Medico</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#"><i class="fas fa-ambulance"></i> Solicitar Cita</a>
+                    </div>
+                </li>
+                <%}%>
+
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user"></i> <%=login.getPersonas().getNombres() != null ? login.getPersonas().getNombres() : ""%>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#"><i class="fas fa-cogs"></i> Configuracion</a>
+                        <a class="dropdown-item" href="index.jsp"><i class="fas fa-sign-out-alt"></i> Cerrar Sesion</a>                                
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</nav>
