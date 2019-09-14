@@ -22,6 +22,10 @@ public class Pacientes extends Personas {
         this.idPaciente = idPaciente;
         this.diagnostico = diagnostico;
     }
+    public Pacientes(int idpersona, String diagnostico) {
+        super(idpersona);
+        this.diagnostico = diagnostico;
+    }
 
     public Pacientes(int idPaciente, String diagnostico, int idPersona, int idDocumento, String nombres, String apellidos, String edad, String sexo,String numDoc) {
         super(idPersona, idDocumento, nombres, apellidos, edad, sexo, numDoc);

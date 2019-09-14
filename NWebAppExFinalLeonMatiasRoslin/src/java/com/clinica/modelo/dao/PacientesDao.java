@@ -1,6 +1,7 @@
 package com.clinica.modelo.dao;
 
 import com.clinica.modelo.Pacientes;
+import com.clinica.modelo.Personas;
 import java.util.List;
 
 /**
@@ -13,5 +14,11 @@ public interface PacientesDao {
     public List<Pacientes> getPacientes();
     
     public Pacientes findPacienteByNumDoc(String numDoc);
+    
+    public Personas findPersonaByNumDoc(String numDoc);
+    
+    public boolean savePersona(Personas p);
+    
+    public boolean savePaciente(Pacientes p);
 
 }

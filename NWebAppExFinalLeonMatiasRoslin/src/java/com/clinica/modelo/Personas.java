@@ -25,10 +25,21 @@ public class Personas extends Documentos {
     public Personas() {
         super(0, null, null);        
     }
+    public Personas(int idPersona) {
+        this.idPersona = idPersona;      
+    }
 
     public Personas(int idPersona, int idDocumento, String nombres, String apellidos, String edad, String sexo,String numDoc) {
         super(idDocumento, null, null);
         this.idPersona = idPersona;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.edad = edad;
+        this.sexo = sexo;
+        this.numDocumento = numDoc;
+    }
+    public Personas(int idDocumento, String nombres, String apellidos, String edad, String sexo,String numDoc) {
+        super(idDocumento, null, null);
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.edad = edad;

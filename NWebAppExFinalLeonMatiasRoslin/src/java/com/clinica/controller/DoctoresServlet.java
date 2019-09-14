@@ -5,9 +5,12 @@
  */
 package com.clinica.controller;
 
+import com.clinica.modelo.Doctores;
 import com.clinica.modelo.Pacientes;
 import com.clinica.modelo.Personas;
+import com.clinica.modelo.dao.MedicosDao;
 import com.clinica.modelo.dao.PacientesDao;
+import com.clinica.modelo.dao.impl.MedicosDaoImpl;
 import com.clinica.modelo.dao.impl.PacientesDaoImpl;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,9 +27,10 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Leon Matias R.
  */
-@WebServlet(name = "PacientesServlet", urlPatterns = {"/Pacientes"})
-public class PacientesServlet extends HttpServlet {
+@WebServlet(name = "DoctoresServlet", urlPatterns = {"/Doctores"})
+public class DoctoresServlet extends HttpServlet {
 
+    MedicosDao medicos = new MedicosDaoImpl();
     PacientesDao pacientes = new PacientesDaoImpl();
 
     /**
@@ -45,19 +49,19 @@ public class PacientesServlet extends HttpServlet {
 
         switch (func) {
             case 10:
-                obtainPacientes(request, response);
+                obtainMedics(request, response);
                 break;
             case 20:
-                initPacientes(request, response);
-                break;
+                initMedicos(request, response);
+                break;            
             case 30:
-                savePacientes(request, response);
-                break;
+                saveMedico(request, response);
+                break;            
             case 40:
-                searchPacientes(request, response);
+                searchMedico(request, response);
                 break;
             default:
-                obtainPacientes(request, response);
+                obtainMedics(request, response);
         }
 
     }
@@ -101,38 +105,38 @@ public class PacientesServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private void obtainPacientes(HttpServletRequest request, HttpServletResponse response) {
+    private void obtainMedics(HttpServletRequest request, HttpServletResponse response) {
 
-        List<Pacientes> listPac = new ArrayList<>();
-        listPac = pacientes.getPacientes();
+        List<Doctores> listDoc = new ArrayList<>();
+        listDoc = medicos.getMedicos();
         try {
-            request.getSession().setAttribute("pacientes", listPac);
+            request.getSession().setAttribute("doctores", listDoc);
             request.getSession().setAttribute("oper", "LIST");
 
-            request.getRequestDispatcher("pacientes.jsp").forward(request, response);
+            request.getRequestDispatcher("medicos.jsp").forward(request, response);
         } catch (ServletException ex) {
-            Logger.getLogger(PacientesServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DoctoresServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(PacientesServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DoctoresServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
 
-    private void initPacientes(HttpServletRequest request, HttpServletResponse response) {
+    private void initMedicos(HttpServletRequest request, HttpServletResponse response) {
 
         try {
             request.getSession().setAttribute("oper", "SEARCH");
 
-            request.getRequestDispatcher("pacientes.jsp").forward(request, response);
+            request.getRequestDispatcher("medicos.jsp").forward(request, response);
         } catch (ServletException ex) {
-            Logger.getLogger(PacientesServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DoctoresServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(PacientesServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DoctoresServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
 
-    private void savePacientes(HttpServletRequest request, HttpServletResponse response) {
+    private void saveMedico(HttpServletRequest request, HttpServletResponse response) {
 
         Integer tipodoc = Integer.parseInt(request.getParameter("tipodoc"));
         String numDoc = request.getParameter("numdoc");
@@ -140,7 +144,7 @@ public class PacientesServlet extends HttpServlet {
         String apellidos = request.getParameter("apellidos");
         String edad = request.getParameter("edad");
         String sexo = request.getParameter("sexo");
-        String diag = request.getParameter("diagnostico");
+        String esp = request.getParameter("especialidad");
 
         Personas per = new Personas(tipodoc, nombres, apellidos, edad, sexo, numDoc);
 
@@ -149,29 +153,29 @@ public class PacientesServlet extends HttpServlet {
         if (successPersona) {
             Personas person = pacientes.findPersonaByNumDoc(numDoc);
             if (person != null) {
-                Pacientes pac = new Pacientes(person.getIdPersona(), diag);
-                boolean successPaciente = pacientes.savePaciente(pac);
-                if (successPaciente) {
+                Doctores doc = new Doctores(person.getIdPersona(), esp);
+                boolean successMedic = medicos.saveMedic(doc);
+                if (successMedic) {
                     successComplete = true;
                 }
             }
         }
         if (successComplete) {
-            obtainPacientes(request, response);
+            obtainMedics(request, response);
         }
 
     }
 
-    private void searchPacientes(HttpServletRequest request, HttpServletResponse response) {
+    private void searchMedico(HttpServletRequest request, HttpServletResponse response) {
 
         String numdoc = request.getParameter("numDoc");
         String valid = "";
         if (numdoc != null) {
             try {
 
-                Pacientes paciente = pacientes.findPacienteByNumDoc(numdoc);
-                if (paciente != null) {
-                    request.getSession().setAttribute("paciente", paciente);
+                Doctores doctores = medicos.findDocByNumDoc(numdoc);
+                if (doctores != null) {
+                    request.getSession().setAttribute("doctor", doctores);
                     valid = "SUCCESS";
                 } else {
                     valid = "UNSUCCESS";
@@ -179,11 +183,11 @@ public class PacientesServlet extends HttpServlet {
                 request.getSession().setAttribute("confirmsearch", valid);
                 request.getSession().setAttribute("oper", "SEARCH");
 
-                request.getRequestDispatcher("pacientes.jsp").forward(request, response);
+                request.getRequestDispatcher("medicos.jsp").forward(request, response);
             } catch (ServletException ex) {
-                Logger.getLogger(PacientesServlet.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(DoctoresServlet.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
-                Logger.getLogger(PacientesServlet.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(DoctoresServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

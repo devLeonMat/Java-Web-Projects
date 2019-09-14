@@ -14,5 +14,7 @@ public interface MedicosDao {
     
     public Doctores findDocByNumDoc(String numdoc);
     
+    public boolean saveMedic(Doctores d);
+    
     
 }

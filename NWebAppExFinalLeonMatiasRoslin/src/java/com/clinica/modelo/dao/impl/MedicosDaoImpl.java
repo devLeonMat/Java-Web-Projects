@@ -33,7 +33,7 @@ public class MedicosDaoImpl implements MedicosDao {
             ps = cn.prepareStatement(query.toString());
             rs = ps.executeQuery();
 
-            if (rs.next()) {
+            while(rs.next()) {
                 doc = new Doctores(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
                 listDocs.add(doc);
             }
@@ -64,7 +64,7 @@ public class MedicosDaoImpl implements MedicosDao {
             ps.setString(1, numdoc);
             rs = ps.executeQuery();
 
-            if (rs.next()) {
+            while (rs.next()) {
                 doc = new Doctores(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4),
                         rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9));
             }
@@ -76,6 +76,29 @@ public class MedicosDaoImpl implements MedicosDao {
         }
 
         return doc;
+    }
+
+    @Override
+    public boolean saveMedic(Doctores d) {
+        boolean resultado = false;
+        Connection con = null;
+
+        try {
+            con = Conexion.getConexion();
+            String sql = "INSERT INTO doctores(idpersona, especialidad) VALUES(?, ?);";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, d.getIdPersona());
+            ps.setString(2, d.getEspecialidad());
+            int contador = ps.executeUpdate();
+            if (contador > 0) {
+                resultado = true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            resultado = false;
+            Conexion.cerrarConexion(con);
+        }
+        return resultado;
     }
 
 }

@@ -12,6 +12,10 @@ public class Doctores extends Personas{
     public Doctores() {
         super(0, 0, null, null, null, null, null);
     }
+    public Doctores(int idPersona, String especialidad) {
+        super(idPersona);
+        this.especialidad = especialidad;
+    }
 
     public Doctores(int idPersona, int idDocumento, String nombres, String apellidos, String edad, String sexo, String numDoc) {
         super(idPersona, idDocumento, nombres, apellidos, edad, sexo, numDoc);

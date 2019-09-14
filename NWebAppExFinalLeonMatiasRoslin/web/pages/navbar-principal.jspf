@@ -16,9 +16,10 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="Pacientes?FUNC=10"><i class="fas fa-list-ul"></i> Listar Pacientes</a>
-                        <a class="dropdown-item" href="#"><i class="fas fa-search"></i> Buscar Paciente</a>
+                        <a class="dropdown-item" href="Pacientes?FUNC=20"><i class="fas fa-search"></i> Buscar Paciente</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#"><i class="fas fa-user-plus"></i> Agregar Paciente</a>
+                        <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-user-plus"></i> Agregar Paciente</button>
+
                     </div>
                 </li>
                 <%}%>
@@ -28,10 +29,15 @@
                         <i class="fas fa-user-md"></i> Medicos
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#"><i class="fas fa-list-ul"></i> Listar Medicos</a>
-                        <a class="dropdown-item" href="#"><i class="fas fa-search"></i> Buscar Medico</a>
+                        <a class="dropdown-item" href="Doctores?FUNC=10"><i class="fas fa-list-ul"></i> Listar Medicos</a>
+                        <a class="dropdown-item" href="Doctores?FUNC=20"><i class="fas fa-search"></i> Buscar Medico</a>     
+                        <%if (perfil.equalsIgnoreCase("admin")) {%>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#"><i class="fas fa-ambulance"></i> Solicitar Cita</a>
+                        <button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#exampleModalCenter2"><i class="fas fa-user-plus"></i> Agregar Medico</button>
+
+
+                        <%}%>
+
                     </div>
                 </li>
                 <%}%>
@@ -53,3 +59,4 @@
         </div>
     </div>
 </nav>
+
