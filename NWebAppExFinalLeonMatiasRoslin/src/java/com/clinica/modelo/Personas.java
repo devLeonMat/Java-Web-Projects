@@ -14,6 +14,14 @@ public class Personas extends Documentos {
     private String sexo;
     private String numDocumento;
 
+    public Personas(String nombres, String apellidos, String numdoc) {
+        super(0, "", "");
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.edad = null;
+        this.sexo = null;
+        this.numDocumento = numdoc;
+    }
     public Personas(String nombres, String apellidos) {
         super(0, "", "");
         this.nombres = nombres;

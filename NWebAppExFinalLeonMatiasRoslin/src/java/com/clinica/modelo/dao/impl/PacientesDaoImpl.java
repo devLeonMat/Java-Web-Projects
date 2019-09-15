@@ -29,14 +29,14 @@ public class PacientesDaoImpl implements PacientesDao {
         ResultSet rs = null;
 
         StringBuilder query = new StringBuilder();
-        query.append("select p.idpaciente, p.diagnostico, p2.nombres, p2.apellidos ");
+        query.append("select p.idpaciente, p.diagnostico, p2.nombres, p2.apellidos, p2.numdocumento, p.estado ");
         query.append("from pacientes p inner join personas p2 on p.idpersona = p2.idpersona ");
         try {
             cn = Conexion.getConexion();
             st = cn.createStatement();
             rs = st.executeQuery(query.toString());
             while (rs.next()) {
-                pac = new Pacientes(rs.getInt(1), rs.getString(2).toUpperCase(), rs.getString(3).toUpperCase(), rs.getString(4).toUpperCase());
+                pac = new Pacientes(rs.getInt(1), rs.getString(2).toUpperCase(), rs.getString(3).toUpperCase(), rs.getString(4).toUpperCase(),rs.getString(5), rs.getInt(6));
                 listPacs.add(pac);
             }
         } catch (SQLException ex) {
@@ -57,9 +57,9 @@ public class PacientesDaoImpl implements PacientesDao {
         PreparedStatement ps = null;
 
         StringBuilder query = new StringBuilder();
-        query.append("select p.idpaciente, p.diagnostico, p2.nombres, p2.apellidos ");
+        query.append("select p.idpaciente, p.diagnostico, p2.nombres, p2.apellidos, p2.numdocumento, p.estado ");
         query.append("from pacientes p inner join personas p2 on p.idpersona = p2.idpersona ");
-        query.append("where p2.numdocumento = ? ;");
+        query.append("where p2.numdocumento like ? ;");
         try {
             cn = Conexion.getConexion();
             ps = cn.prepareStatement(query.toString());
@@ -67,7 +67,7 @@ public class PacientesDaoImpl implements PacientesDao {
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                pac = new Pacientes(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
+                pac = new Pacientes(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),rs.getString(5), rs.getInt(1));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();

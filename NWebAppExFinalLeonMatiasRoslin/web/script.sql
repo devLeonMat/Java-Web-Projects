@@ -64,15 +64,16 @@ INSERT INTO cibertec.usuario (idpersona,usuario,password,perfil) VALUES
 ,(6,'doc04','1234','doc');
 
 
+
 CREATE TABLE `pacientes` (
   `idpaciente` int(11) NOT NULL AUTO_INCREMENT,
   `idpersona` int(11) DEFAULT NULL,
   `diagnostico` varchar(300) DEFAULT NULL,
+  `estado` int(11) DEFAULT '0',
   PRIMARY KEY (`idpaciente`),
   KEY `pacientes_fk` (`idpersona`),
   CONSTRAINT `pacientes_fk` FOREIGN KEY (`idpersona`) REFERENCES `personas` (`idpersona`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
-
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1
 
 INSERT INTO cibertec.pacientes (idpersona,diagnostico) VALUES 
 (10,'sano')

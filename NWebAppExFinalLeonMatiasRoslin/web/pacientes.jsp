@@ -18,6 +18,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nombres</th>
+                <th scope="col">Documento</th>
                 <th scope="col">Diagnostico</th>
                 <th scope="col">Opciones</th>
             </tr>
@@ -28,6 +29,7 @@
             <tr>
                 <th scope="row">1</th>
                 <td><%=e.getNombres() + " " + e.getApellidos()%></td>
+                <td><%=e.getNumDocumento()%></td>
                 <td><%=e.getDiagnostico()%></td>
                 <td>
                     <button type="button" class="btn btn-danger">Dar de alta</button></td>

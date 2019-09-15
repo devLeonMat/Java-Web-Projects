@@ -9,6 +9,7 @@ public class Pacientes extends Personas {
 
     private int idPaciente;
     private String diagnostico;
+    private int estado;
 
     public Pacientes(int idDocumento, String tipoDocumento, String descripcion, int idPersona, String nombres, String apellidos, String edad, String sexo, String numDoc) {
         super(idDocumento, tipoDocumento, descripcion, idPersona, nombres, apellidos, edad, sexo, numDoc);
@@ -17,10 +18,11 @@ public class Pacientes extends Personas {
         super(0, null, null, 0, null, null, null, null, null);
     }
 
-    public Pacientes(int idPaciente, String diagnostico, String nombres, String apellidos) {
-        super(nombres, apellidos);
+    public Pacientes(int idPaciente, String diagnostico, String nombres, String apellidos, String numDocumento, int estado) {
+        super(nombres, apellidos, numDocumento);
         this.idPaciente = idPaciente;
         this.diagnostico = diagnostico;
+        this.estado = estado;
     }
     public Pacientes(int idpersona, String diagnostico) {
         super(idpersona);
@@ -53,6 +55,14 @@ public class Pacientes extends Personas {
 
     public void setDiagnostico(String diagnostico) {
         this.diagnostico = diagnostico;
+    }
+
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
     }
 
 }

@@ -41,7 +41,11 @@
                     </div>
                 </li>
                 <%}%>
-
+                <%if (perfil.equalsIgnoreCase("admin")) {%>
+                <li class="nav-item">
+                    <a class="nav-link" href="estadisticas.jsp">Estadisticas</a>
+                </li>
+                <%}%>
             </ul>
             <form class="form-inline my-2 my-lg-0">
 

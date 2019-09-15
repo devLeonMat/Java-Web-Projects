@@ -106,6 +106,9 @@ public class PacientesServlet extends HttpServlet {
         List<Pacientes> listPac = new ArrayList<>();
         listPac = pacientes.getPacientes();
         try {
+            for (Pacientes p : listPac) {
+                System.out.println("pac-->"+p.getNumDocumento());
+            }
             request.getSession().setAttribute("pacientes", listPac);
             request.getSession().setAttribute("oper", "LIST");
 
